@@ -9,6 +9,8 @@ import { ArticleListComponent } from './components/article-list/article-list.com
 import { StorePageComponent } from './pages/store-page/store-page.component';
 import { RouterModule } from '@angular/router';
 import { StoreRoutingModule } from './store-routing.module';
+import { ArticleNewTemplateComponent } from './components/article-new-template/article-new-template.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,12 +22,14 @@ import { StoreRoutingModule } from './store-routing.module';
     FormularioTemplateComponent,
     ArticleItemComponent,
     ArticleListComponent,
-    StorePageComponent
+    StorePageComponent,
+    ArticleNewTemplateComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    StoreRoutingModule
+    StoreRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class StoreModule { }

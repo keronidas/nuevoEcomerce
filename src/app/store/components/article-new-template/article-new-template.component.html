@@ -1,0 +1,39 @@
+<form [formGroup]="articleForm" (ngSubmit)="submitForm()" class="mt-4">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" id="nombre" class="form-control" formControlName="nombre">
+      <div *ngIf="articleForm?.get('nombre')?.hasError('required') && (articleForm?.get('nombre')?.dirty || formSubmitted)" class="invalid-feedback">
+        El nombre es obligatorio.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio:</label>
+      <input type="text" id="precio" class="form-control" formControlName="precio">
+      <div *ngIf="articleForm?.get('precio')?.hasError('required') && (articleForm?.get('precio')?.dirty || formSubmitted)" class="invalid-feedback">
+        El precio es obligatorio.
+      </div>
+      <div *ngIf="articleForm?.get('precio')?.hasError('pattern') && (articleForm?.get('precio')?.dirty || formSubmitted)" class="invalid-feedback">
+        El precio debe ser un número válido.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="imageUrl" class="form-label">URL de la imagen:</label>
+      <input type="text" id="imageUrl" class="form-control" formControlName="imageUrl">
+      <div *ngIf="articleForm?.get('imageUrl')?.hasError('required') && (articleForm?.get('imageUrl')?.dirty || formSubmitted)" class="invalid-feedback">
+        La URL de la imagen es obligatoria.
+      </div>
+      <div *ngIf="articleForm?.get('imageUrl')?.hasError('pattern') && (articleForm?.get('imageUrl')?.dirty || formSubmitted)" class="invalid-feedback">
+        La URL de la imagen no es válida.
+      </div>
+    </div>
+  
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="enVenta" class="form-check-input" formControlName="enVenta">
+      <label class="form-check-label" for="enVenta">¿Está en venta?</label>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+  

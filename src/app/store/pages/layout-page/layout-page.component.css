@@ -1,10 +1,9 @@
 .full-space {
     width: 100%;
-    min-height: 100%;
-    position: absolute;
+    min-height: 100vh; /* Cambiado a viewport height */
+    position: relative; /* Cambiado a relative */
     top: 0;
     left: 0;
-    /* background-color:rgba(0, 0, 0, 0.7); */
     background-image: url("src/assets/img/fondo.jpg");
     background-size: cover;
     background-position: center;
@@ -16,20 +15,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 20%;
-    max-width: 100%;
-    top: 0;
-    left: 0;
+    height: 10vh; /* Cambiado a viewport height */
+    min-width: 100%;
     background-color: #f5be41;
-    border: solid 5px #cf3721;
-    /* background-color: #1ad142b7; */
-    /* background-color: #cf3721; */
-}
-
-.row-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80%;
-    width: 100%;
+    border: 5px solid #cf3721;
+    margin-bottom: 100px;
 }
