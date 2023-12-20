@@ -1,0 +1,35 @@
+.full-space {
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color:rgba(0, 0, 0, 0.7); */
+    background-image: url("src/assets/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.row-tittle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #f5be41;
+    border: solid 5px #cf3721;
+    /* background-color: #1ad142b7; */
+    /* background-color: #cf3721; */
+}
+
+.row-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+}

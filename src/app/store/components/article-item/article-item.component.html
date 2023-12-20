@@ -1,0 +1,36 @@
+<div class="card mb-4" [ngClass]="{'not-available-burger': !articulo.isOnSale}">
+    <img [src]="articulo.imageUrl" alt="" class="card-img-top img-fluid object-fit-cover">
+    <div class="card-body">
+        <h5 class="card-title">{{articulo.name}}</h5>
+        <p *ngIf="articulo.cantidadEnStock > 0 && articulo.isOnSale">
+            Cantidad en stock: {{articulo.cantidadEnStock}}
+            <span class="cantidad" [ngClass]="{
+                    'not-available': articulo.quantityInCart > articulo.cantidadEnStock,
+                    'available': articulo.quantityInCart <= articulo.cantidadEnStock
+                }" *ngIf="articulo.quantityInCart > articulo.cantidadEnStock">
+                STOCK SUPERADO
+            </span>
+        </p>
+        <p class="card-text" [ngClass]="{'not-stock': articulo.cantidadEnStock == 0}">
+            {{articulo.price}} €
+        </p>
+        <div *ngIf="articulo.cantidadEnStock == 0 && !articulo.isOnSale">
+            <h2>Existencias agotadas</h2>
+        </div>
+    </div>
+    <div class="card-pursache" *ngIf="articulo.cantidadEnStock > 0 && articulo.isOnSale">
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="cantidad" [ngClass]="{
+                    'not-available': articulo.quantityInCart > articulo.cantidadEnStock,
+                    'available': articulo.quantityInCart <= articulo.cantidadEnStock
+                }">
+                Cantidad: {{articulo.quantityInCart}}
+            </p>
+            <div>
+                <button class="btn btn-primary" (click)="agregarProducto()">+</button>
+                <button class="btn btn-secondary" (click)="quitarProducto()"
+                    [disabled]="articulo.quantityInCart <= 0">-</button>
+            </div>
+        </div>
+    </div>
+</div>

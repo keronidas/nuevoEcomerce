@@ -1,0 +1,6 @@
+<div class="row">
+    <ul>
+        <li *ngFor="let item of menu" [routerLink]="item.url" routerLinkActive="">{{ item.name }}
+        </li>
+    </ul>
+</div>
