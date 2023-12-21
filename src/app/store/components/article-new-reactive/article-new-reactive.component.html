@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col">
+  
+      <form [formGroup]="article" (ngSubmit)="onSave()" autocomplete="off">
+  
+        <!-- Campo de producto -->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Producto</label>
+          <div class="col-sm-9">
+  
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre del producto">
+  
+            <span *ngIf="isValidField('nombre')" class="form-text text-danger">
+              {{ getFieldError('nombre') }}
+            </span>
+          </div>
+        </div>
+  
+        <!-- Campo de producto -->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Precio</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" formControlName="precio" placeholder="Precio del producto" min="0">
+  
+            <span *ngIf="isValidField('precio')" class="form-text text-danger">
+              {{ getFieldError('precio') }}
+            </span>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Imagen</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" formControlName="imageUrl" placeholder="Imagen">
+  
+            <span *ngIf="isValidField('imageUrl')" class="form-text text-danger">
+              {{ getFieldError('imageUrl') }}
+            </span>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="enVenta" formControlName="enVenta">
+          <label class="form-check-label" for="enVenta">¿Está en venta?</label>
+        </div>
+  
+  
+  
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary float-end">
+              Guardar
+            </button>
+          </div>
+        </div>
+  
+  
+  
+      </form>
+  
+    </div>
+  </div>
+  

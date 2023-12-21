@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-formulario-reactivo',
   templateUrl: './formulario-reactivo.component.html',
-  styleUrls: ['./formulario-reactivo.component.css']
+  styleUrls: []
 })
 export class FormularioReactivoComponent {
 

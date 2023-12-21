@@ -1,39 +1,36 @@
-<form [formGroup]="miFormulario" (ngSubmit)="onSave()" autocomplete="off" class="mt-4">
-  <div class="mb-3">
-    <label for="nombre" class="form-label">Nombre:</label>
-    <input type="text" id="nombre" class="form-control" formControlName="nombre">
-    <div *ngIf="isValidField('nombre')" class="form-text text-danger" class="invalid-feedback">
-      El nombre es obligatorio.
+<form #articleForm="ngForm" (ngSubmit)="onSubmit(articleForm)" class="container mt-4" novalidate>
+  <div ngModelGroup="article" #articleGroup="ngModelGroup">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Artículo:</label>
+      <input type="text" id="nombre" class="form-control" required name="nombre" [(ngModel)]="article.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.touched && nombre.invalid" class="text-danger">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio del Artículo:</label>
+      <input type="text" id="precio" class="form-control" required pattern="^\d+(\.\d{1,2})?$" name="precio" [(ngModel)]="article.precio" #precio="ngModel">
+      <div *ngIf="precio.touched && precio.invalid" class="text-danger">
+        <div *ngIf="precio.errors?.['required']">El precio es obligatorio.</div>
+        <div *ngIf="precio.errors?.['pattern']">El precio debe ser numérico.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="imageUrl" class="form-label">URL de la Imagen:</label>
+      <input type="text" id="imageUrl" class="form-control" required name="imageUrl" [(ngModel)]="article.imageUrl" #imageUrl="ngModel" pattern="^(http|https)://[a-zA-Z0-9]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9]+)*\/?[a-zA-Z0-9]+\.(jpg|jpeg|png|gif)$">
+      <div *ngIf="imageUrl.touched && imageUrl.invalid" class="text-danger">
+        <div *ngIf="imageUrl.errors?.['required']">La URL de la imagen es obligatoria.</div>
+        <div *ngIf="imageUrl.errors?.['pattern']">La URL de la imagen debe ser válida.</div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="enVenta" class="form-check-input" name="enVenta" [(ngModel)]="article.enVenta" #enVenta="ngModel">
+      <label class="form-check-label" for="enVenta">¿Está en venta?</label>
     </div>
   </div>
 
-  <div class="mb-3">
-    <label for="precio" class="form-label">Precio:</label>
-    <input type="text" id="precio" class="form-control" formControlName="precio">
-    <div *ngIf="isValidField('precio')" class="form-text text-danger">
-      El precio es obligatorio.
-    </div>
-    <div *ngIf="isValidField('precio')" class="form-text text-danger" class="invalid-feedback">
-      El precio debe ser un número válido.
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <label for="imageUrl" class="form-label">URL de la imagen:</label>
-    <input type="text" id="imageUrl" class="form-control" formControlName="imageUrl">
-    <div *ngIf="isValidField('imageUrl')" class="form-text text-danger" class="invalid-feedback"
-      class="invalid-feedback">
-      La URL de la imagen es obligatoria.
-    </div>
-    <div *ngIf="isValidField('imageUrl')" class="form-text text-danger" class="invalid-feedback" class="invalid-feedback">
-      La URL de la imagen no es válida.
-    </div>
-  </div>
-
-  <div class="mb-3 form-check">
-    <input type="checkbox" id="enVenta" class="form-check-input" formControlName="enVenta">
-    <label class="form-check-label" for="enVenta">¿Está en venta?</label>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!articleForm.valid">Enviar</button>
 </form>
