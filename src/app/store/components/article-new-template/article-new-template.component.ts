@@ -13,8 +13,8 @@ export class ArticleNewTemplateComponent {
   articleForm = new FormGroup({});
 
   article = {
-    nombre: '',
-    precio: '',
+    name: '',
+    price: '',
     imageUrl: '',
     enVenta: false
   };

@@ -1,5 +1,5 @@
 <div class="card mb-4" [ngClass]="{'not-available-burger': !articulo.isOnSale}">
-    <img [src]="articulo.imageUrl" alt="" class="card-img-top img-fluid object-fit-cover">
+    <img [src]="articulo.imageUrl|personalizado" alt="Imagen Hamburgesa" class="card-img-top img-fluid object-fit-cover">
     <div class="card-body">
         <h5 class="card-title">{{articulo.name}}</h5>
         <p *ngIf="articulo.cantidadEnStock > 0 && articulo.isOnSale">
@@ -12,7 +12,7 @@
             </span>
         </p>
         <p class="card-text" [ngClass]="{'not-stock': articulo.cantidadEnStock == 0}">
-            {{articulo.price}} €
+            {{articulo.price|currency:'EUR':'symbol':'1.2-2'}} 
         </p>
         <div *ngIf="articulo.cantidadEnStock == 0 && !articulo.isOnSale">
             <h2>Existencias agotadas</h2>

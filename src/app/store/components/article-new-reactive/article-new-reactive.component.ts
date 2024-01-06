@@ -12,8 +12,8 @@ import { ArticleModel } from '../../models/Article';
 export class ArticleNewReactiveComponent implements OnInit {
   private apiUrl = 'http://localhost:3000/api/articles';
   public article: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(2), NameArticleValidator()]],
-    precio: ["", [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/), Validators.min(0.1)]],
+    name: ['', [Validators.required, Validators.minLength(2), NameArticleValidator()]],
+    price: ["", [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/), Validators.min(0.1)]],
     imageUrl: ['', [Validators.required, Validators.pattern(/^(http|https):\/\/[a-zA-Z0-9]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9]+)*\/?[a-zA-Z0-9]+\.(jpg|jpeg|png|gif)$/)]],
     enVenta: ['']
   });

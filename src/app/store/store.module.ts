@@ -13,6 +13,7 @@ import { ArticleNewTemplateComponent } from './components/article-new-template/a
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleNewReactiveComponent } from './components/article-new-reactive/article-new-reactive.component';
 import {HttpClientModule} from '@angular/common/http';
+import { PersonalizadoPipe } from './pipes/personalizado.pipe';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import {HttpClientModule} from '@angular/common/http';
     ArticleListComponent,
     StorePageComponent,
     ArticleNewTemplateComponent,
-    ArticleNewReactiveComponent
+    ArticleNewReactiveComponent,
+    PersonalizadoPipe,
+
   ],
   imports: [
     CommonModule,

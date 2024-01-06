@@ -1,19 +1,19 @@
 <form #articleForm="ngForm" (ngSubmit)="onSubmit(articleForm)" class="container mt-4" novalidate>
   <div ngModelGroup="article" #articleGroup="ngModelGroup">
     <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre del Artículo:</label>
-      <input type="text" id="nombre" class="form-control" required name="nombre" [(ngModel)]="article.nombre" #nombre="ngModel">
-      <div *ngIf="nombre.touched && nombre.invalid" class="text-danger">
+      <label for="name" class="form-label">Nombre del Artículo:</label>
+      <input type="text" id="name" class="form-control" required name="name" [(ngModel)]="article.name" #name="ngModel">
+      <div *ngIf="name.touched && name.invalid" class="text-danger">
         El nombre es obligatorio.
       </div>
     </div>
 
     <div class="mb-3">
-      <label for="precio" class="form-label">Precio del Artículo:</label>
-      <input type="text" id="precio" class="form-control" required pattern="^\d+(\.\d{1,2})?$" name="precio" [(ngModel)]="article.precio" #precio="ngModel">
-      <div *ngIf="precio.touched && precio.invalid" class="text-danger">
-        <div *ngIf="precio.errors?.['required']">El precio es obligatorio.</div>
-        <div *ngIf="precio.errors?.['pattern']">El precio debe ser numérico.</div>
+      <label for="price" class="form-label">Precio del Artículo:</label>
+      <input type="text" id="price" class="form-control" required pattern="^\d+(\.\d{1,2})?$" name="price" [(ngModel)]="article.price" #price="ngModel">
+      <div *ngIf="price.touched && price.invalid" class="text-danger">
+        <div *ngIf="price.errors?.['required']">El precio es obligatorio.</div>
+        <div *ngIf="price.errors?.['pattern']">El precio debe ser numérico.</div>
       </div>
     </div>
 
