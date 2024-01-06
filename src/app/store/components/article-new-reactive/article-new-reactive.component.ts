@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NameArticleValidator } from '../../helpers/validacion-personalizada.helper';
+import { HttpClient } from '@angular/common/http';
+import { ArticleModel } from '../../models/Article';
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -8,6 +10,7 @@ import { NameArticleValidator } from '../../helpers/validacion-personalizada.hel
   styleUrls: []
 })
 export class ArticleNewReactiveComponent implements OnInit {
+  private apiUrl = 'http://localhost:3000/api/articles';
   public article: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(2), NameArticleValidator()]],
     precio: ["", [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/), Validators.min(0.1)]],
@@ -15,11 +18,14 @@ export class ArticleNewReactiveComponent implements OnInit {
     enVenta: ['']
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) {
 
-  ngOnInit(): void {
-    // this.myForm.reset( rtx5090 );
   }
+  ngOnInit(): void {
+    
+  }
+  
+ 
 
   isValidField(field: string): boolean | null {
     return this.article.controls[field].errors
@@ -57,16 +63,19 @@ export class ArticleNewReactiveComponent implements OnInit {
 
 
   onSave(): void {
-
     if (this.article.invalid) {
       this.article.markAllAsTouched();
       return;
     }
-
-    console.log(this.article.value);
-
-    this.article.reset({ price: 0, inStorage: 0 });
-
+  
+    console.log('Datos del formulario:', this.article.value); // Añadir para depuración
+  
+    this.http.post(this.apiUrl, this.article.value).subscribe(
+      response => {
+        console.log('Artículo guardado con éxito', response);
+      },
+      error => console.error('Error al guardar el artículo', error)
+    );
   }
 
 }

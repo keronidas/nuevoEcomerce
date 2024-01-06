@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ArticleModel } from '../../models/Article';
+import { HttpClient } from '@angular/common/http';
+import { ArticleServiceService } from '../../services/article-service.service';
 
 @Component({
   selector: 'app-article-list',
@@ -42,17 +44,28 @@ export class ArticleListComponent {
 
 
 
-  constructor() {
-    //Iniciamos la lista de productos
-    this.listaProductos = [this.MeltedCheeseBurger, this.BigKingStreet, this.BaconBusted];
+  constructor(private articleService: ArticleServiceService) {}
 
-    //Comprobamos si hay stock, si no lo hay, desactivamos la venta
-    this.listaProductos.forEach(element => {
-      if (element.cantidadEnStock == 0) {
-        element.isOnSale = false;
+  ngOnInit() {
+    this.articleService.getArticles().subscribe(
+      (articles) => {
+        this.listaProductos = articles;
+        this.checkStock();
+      },
+      (error) => {
+        console.error('Error al obtener los artículos', error);
+      }
+    );
+  }
+
+  checkStock() {
+    this.listaProductos.forEach(article => {
+      if (article.cantidadEnStock === 0) {
+        article.isOnSale = false;
       }
     });
   }
 
+  // Aquí puedes añadir otros métodos como añadir o actualizar artículos
 }
 

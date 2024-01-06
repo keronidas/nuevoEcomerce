@@ -1,41 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { ArticleModel } from '../models/Article';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleServiceService {
+  private apiUrl:string= 'http://localhost:3000/api/articles';
   private article = new BehaviorSubject<any[]>([]);
-articles$ = this.article.asObservable();
-  constructor() { }
+  articles$ = this.article.asObservable();
+  constructor(private http:HttpClient) { }
 
-  getArticles(): Observable<ArticleModel[]> { 
-    return this.articles$;
-  };
-
-  changeQuantity(articleID: number, chagenInQuantity: number): Observable<ArticleModel> {
-    const currentProducts = this.article.getValue();
-    const updatedProducts = currentProducts.map(product => {
-      if (product.id === articleID) {
-        return { ...product, quantity: product.quantity + chagenInQuantity };
-      }
-      return product;
-    });
-    this.article.next(updatedProducts);
-
-    // Encuentra el artículo actualizado y devuelve un Observable de él
-    const updatedArticle = updatedProducts.find(product => product.id === articleID);
-    return updatedArticle ? new BehaviorSubject<ArticleModel>(updatedArticle).asObservable() : throwError(new Error('Article not found'));
+  getArticles(query?:string): Observable<ArticleModel[]> {
+    const url = query ? `${this.apiUrl}?q=${query}` : this.apiUrl;
+    return this.http.get<ArticleModel[]>(url);
   }
 
-  create(article: ArticleModel): Observable<ArticleModel> {
-    const currentArticles = this.article.getValue();
-    this.article.next([...currentArticles, article]);
-    
-    // Devolver un Observable del artículo añadido
-    return new BehaviorSubject<ArticleModel>(article).asObservable();
+  changeArticleQuantity(id: number, changeInQuantity: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}`, { changeInQuantity });
+  }
+
+  createArticle(article: ArticleModel): Observable<ArticleModel> {
+    return this.http.post<ArticleModel>(this.apiUrl, article);
   }
 
 }

@@ -12,7 +12,7 @@ import { StoreRoutingModule } from './store-routing.module';
 import { ArticleNewTemplateComponent } from './components/article-new-template/article-new-template.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleNewReactiveComponent } from './components/article-new-reactive/article-new-reactive.component';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -32,7 +32,9 @@ import { ArticleNewReactiveComponent } from './components/article-new-reactive/a
     RouterModule,
     StoreRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    
   ]
 })
 export class StoreModule { }
