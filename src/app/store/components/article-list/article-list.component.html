@@ -1,6 +1,13 @@
-<div class="row justify-content-center">
+<div class="container mt-3">
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <input type="text" class="form-control custom-hover" placeholder="Buscar artículo..." (input)="buscarArticulos($event)">
+        </div>
+    </div>
 
-    <app-article-item *ngFor="let articulo of listaProductos" [articulo]="articulo"
-        class="col-3 d-flex"></app-article-item>
-
+    <div class="row">
+        <div *ngFor="let articulo of listaProductosFiltrados" class="col-md-4 mb-3 d-flex align-items-stretch">
+            <app-article-item [articulo]="articulo" class="w-100"></app-article-item>
+        </div>
+    </div>
 </div>

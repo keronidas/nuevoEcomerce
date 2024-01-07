@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ArticleModel } from '../../models/Article';
-import { HttpClient } from '@angular/common/http';
 import { ArticleServiceService } from '../../services/article-service.service';
 
 @Component({
@@ -11,46 +10,22 @@ import { ArticleServiceService } from '../../services/article-service.service';
 export class ArticleListComponent {
 
 
+  listaProductosFiltrados: ArticleModel[] = [];
   listaProductos: ArticleModel[] = [];
-  //Definimos los productos
-
-  MeltedCheeseBurger: ArticleModel = {
-    name: 'Melted cheese burger',
-    imageUrl: './assets/img/hamburguesa-queso-fundido.jpg',
-    price: 14.90,
-    isOnSale: true,
-    quantityInCart: 0,
-    cantidadEnStock: 15
-  };
-
-  BigKingStreet: ArticleModel = {
-    name: 'Big King Street',
-    imageUrl: './assets/img/big-king-street.jpg',
-    price: 13.75,
-    isOnSale: true,
-    quantityInCart: 0,
-    cantidadEnStock: 12
-  };
-
-  BaconBusted: ArticleModel = {
-    name: 'Bacon Busted',
-    imageUrl: './assets/img/bacon-busted.jpg',
-    price: 14.20,
-    isOnSale: true,
-    quantityInCart: 0,
-    cantidadEnStock: 0
-  };
 
 
 
 
-  constructor(private articleService: ArticleServiceService) {}
+  constructor(private articleService: ArticleServiceService) {
+  }
 
   ngOnInit() {
     this.articleService.getArticles().subscribe(
       (articles) => {
         this.listaProductos = articles;
+        this.listaProductosFiltrados = articles;
         this.checkStock();
+        console.log("Ahora");
       },
       (error) => {
         console.error('Error al obtener los artículos', error);
@@ -66,6 +41,13 @@ export class ArticleListComponent {
     });
   }
 
-  // Aquí puedes añadir otros métodos como añadir o actualizar artículos
+  buscarArticulos(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+    this.listaProductosFiltrados = this.listaProductos.filter(
+      (articulo) => articulo.name.toLowerCase().includes(value.toLowerCase())
+    );
+   
+  }
+  
 }
-

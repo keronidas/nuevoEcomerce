@@ -1,5 +1,5 @@
 <div class="card mb-4" [ngClass]="{'not-available-burger': !articulo.isOnSale}">
-    <img [src]="articulo.imageUrl|personalizado" alt="Imagen Hamburgesa" class="card-img-top img-fluid object-fit-cover">
+    <img [src]="articulo.imageUrl|personalizado" alt="" (error)="handleImageError($event)" class="card-img-top img-fluid object-fit-cover">
     <div class="card-body">
         <h5 class="card-title">{{articulo.name}}</h5>
         <p *ngIf="articulo.cantidadEnStock > 0 && articulo.isOnSale">

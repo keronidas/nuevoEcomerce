@@ -10,7 +10,9 @@ export class ArticleItemComponent {
   @Input() articulo!: ArticleModel;
 
 
-
+  handleImageError(event: any) {
+    event.target.src = './assets/img/Imagen-no-disponible.png'; 
+  }
  
   agregarProducto() {
     this.articulo.quantityInCart++;
