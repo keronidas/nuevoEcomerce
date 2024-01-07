@@ -68,7 +68,7 @@ export class ArticleNewReactiveComponent implements OnInit {
       return;
     }
   
-    console.log('Datos del formulario:', this.article.value); // Añadir para depuración
+    console.log('Datos del formulario:', this.article.value); 
   
     this.http.post(this.apiUrl, this.article.value).subscribe(
       response => {
