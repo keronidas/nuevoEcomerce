@@ -1,0 +1,20 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <input type="text" id="usuario" formControlName="usuario" class="form-control" placeholder="Ingrese su usuario"
+            required />
+        <div class="invalid-feedback">
+            Por favor, ingrese un usuario válido.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña</label>
+        <input type="password" id="contrasena" formControlName="contrasena" class="form-control"
+            placeholder="Ingrese su contraseña" required />
+        <div class="invalid-feedback">
+            Por favor, ingrese una contraseña válida.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Enviar</button>
+    <p>¿No tienes cuenta? <a routerLink="./register">Registrate</a></p>
+</form>

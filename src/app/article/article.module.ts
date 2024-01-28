@@ -8,7 +8,7 @@ import { ArticleItemComponent } from './components/article-item/article-item.com
 import { ArticleListComponent } from './components/article-list/article-list.component';
 import { StorePageComponent } from './pages/store-page/store-page.component';
 import { RouterModule } from '@angular/router';
-import { StoreRoutingModule } from './store-routing.module';
+import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleNewTemplateComponent } from './components/article-new-template/article-new-template.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleNewReactiveComponent } from './components/article-new-reactive/article-new-reactive.component';
@@ -33,11 +33,11 @@ import { PersonalizadoPipe } from './pipes/personalizado.pipe';
   imports: [
     CommonModule,
     RouterModule,
-    StoreRoutingModule,
+    ArticleRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     
   ]
 })
-export class StoreModule { }
+export class ArticleModule { }
