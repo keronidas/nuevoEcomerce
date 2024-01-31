@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { VisorComponentesComponent } from '../article/pages/visor-componentes/visor-componentes.component';
+import { ArticleDetailsComponent } from '../article/components/article-details/article-details.component';
 
 const routes: Routes = [
   {
@@ -11,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: '**', redirectTo: '',pathMatch:'full' }
+      { path: '**', redirectTo: '', pathMatch: 'full' }
     ]
   }
 ];

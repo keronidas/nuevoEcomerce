@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleNewReactiveComponent } from './components/article-new-reactive/article-new-reactive.component';
 import {HttpClientModule} from '@angular/common/http';
 import { PersonalizadoPipe } from './pipes/personalizado.pipe';
+import { VisorComponentesComponent } from './pages/visor-componentes/visor-componentes.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { PersonalizadoPipe } from './pipes/personalizado.pipe';
     ArticleNewTemplateComponent,
     ArticleNewReactiveComponent,
     PersonalizadoPipe,
+    VisorComponentesComponent,
+    ArticleDetailsComponent,
 
   ],
   imports: [

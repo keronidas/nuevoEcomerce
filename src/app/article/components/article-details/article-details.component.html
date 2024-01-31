@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body">
+                    <img [src]="productoBuscado?.imageUrl" alt="img-no-encontrada">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{productoBuscado?.name}}</h5>
+                    <p>Esta a la venta: {{productoBuscado?.isOnSale}}</p>
+                    <p class="card-text">{{productoBuscado?.price}} € </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

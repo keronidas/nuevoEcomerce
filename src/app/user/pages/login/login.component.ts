@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   formulario: FormGroup;
+  error: string = "";
 
   constructor(private formBuilder: FormBuilder) {
     this.formulario = this.formBuilder.group({
@@ -19,21 +20,23 @@ export class LoginComponent {
   onSubmit() {
     const usuarioControl = this.formulario.get('usuario');
     const contrasenaControl = this.formulario.get('contrasena');
-  
+
     if (usuarioControl !== null && contrasenaControl !== null) {
       if (this.formulario.valid) {
         const usuario = usuarioControl.value;
         const contrasena = contrasenaControl.value;
         console.log('Usuario:', usuario);
         console.log('Contraseña:', contrasena);
-        
+
         // Aquí puedes realizar acciones con los valores ingresados, como enviar una solicitud HTTP
       } else {
+        this.error = "Datos no validos";
         // El formulario no es válido, puedes mostrar un mensaje de error o realizar otras acciones
       }
     } else {
+      this.error="Valores nulos"
       // Maneja el caso en el que los controles de usuario o contraseña sean nulos, por ejemplo, mostrando un mensaje de error.
     }
   }
-  
+
 }

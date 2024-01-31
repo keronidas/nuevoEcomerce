@@ -1,5 +1,7 @@
 <div class="card mb-4" [ngClass]="{'not-available-burger': !articulo.isOnSale}">
-    <img [src]="articulo.imageUrl|personalizado" alt="" (error)="handleImageError($event)" class="card-img-top img-fluid object-fit-cover">
+    <a [routerLink]="['/article/', articulo.id]">
+        <img [src]="articulo.imageUrl|personalizado" alt="" (error)="handleImageError($event)"
+            class="card-img-top img-fluid object-fit-cover"></a>
     <div class="card-body">
         <h5 class="card-title">{{articulo.name}}</h5>
         <p *ngIf="articulo.cantidadEnStock > 0 && articulo.isOnSale">
@@ -12,7 +14,7 @@
             </span>
         </p>
         <p class="card-text" [ngClass]="{'not-stock': articulo.cantidadEnStock == 0}">
-            {{articulo.price|currency:'EUR':'symbol':'1.2-2'}} 
+            {{articulo.price|currency:'EUR':'symbol':'1.2-2'}}
         </p>
         <div *ngIf="articulo.cantidadEnStock == 0 && !articulo.isOnSale">
             <h2>Existencias agotadas</h2>
@@ -26,7 +28,7 @@
                 }">
                 Cantidad: {{articulo.quantityInCart}}
             </p>
-            
+
             <div class="d-flex justify-content-around row">
                 <button class="btn btn-danger p-2 col-5" (click)="agregarProducto()">+</button>
                 <button class="btn btn-danger p-2 col-5" (click)="quitarProducto()"

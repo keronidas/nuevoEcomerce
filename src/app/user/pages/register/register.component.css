@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: black 2px solid;
+    border-radius: 10px;
+    padding: 100px;
+    color: black;
+    background: linear-gradient(to bottom, #FFBB00, #FF6347);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* Borde con sombra */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra */
+
+}
+
+.error-text {
+    color: red;
+}
